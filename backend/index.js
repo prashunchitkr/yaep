@@ -1,20 +1,27 @@
-const express = require("express");
-const products = require("./data/products");
+import express from "express";
+import dotenv from "dotenv";
+
+import connectDB from "./config/db.js";
+import producrRoutes from "./routes/productRoutes.js";
+
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+
+dotenv.config();
+await connectDB();
 
 const app = express();
-app.use(express.json());
+const PORT = process.env.PORT || 5000;
 
 app.get("/", (_req, res) => {
   res.send("Hello World");
 });
 
-app.get("/api/products", (_req, res) => {
-  res.send(products);
-});
+app.use(express.json());
+app.use("/api/products", producrRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
-app.get("/api/products/:id", (req, res) => {
-  const product = products.filter((p) => p._id === req.params.id);
-  res.send(product);
-});
-
-app.listen(5000, console.log("Server running on port 5000"));
+app.listen(
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);
