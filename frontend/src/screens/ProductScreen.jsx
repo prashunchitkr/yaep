@@ -124,7 +124,7 @@ const ProductScreen = ({ history, match }) => {
           )}
         </>
       ) : (
-        "Loading..."
+        <Loader />
       )}
     </>
   );

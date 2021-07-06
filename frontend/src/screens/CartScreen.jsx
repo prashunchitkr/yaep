@@ -113,7 +113,7 @@ const CartScreen = ({ match, location, history }) => {
                 type="button"
                 className=""
                 disabled={cartItems.length === 0}
-                onclick={checkoutHandler}
+                onClick={checkoutHandler}
               >
                 Proceed to Checkout
               </Button>
