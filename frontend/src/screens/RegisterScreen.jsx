@@ -17,19 +17,17 @@ function RegisterScreen({ location, history }) {
 
   const dispatch = useDispatch();
 
-  const userRegister = useSelector((state) => state.userRegister);
+  const userRegister = useSelector((state) => state.user);
   const { loading, error, userInfo } = userRegister;
-
-  const { userInfo: ui } = useSelector((state) => state.userLogin);
 
   const queryParams = new URLSearchParams(location.search);
   const redirect = queryParams.get("redirect");
 
   useEffect(() => {
-    if (userInfo || ui) {
+    if (userInfo) {
       history.push(redirect || "/");
     }
-  }, [history, userInfo, redirect, ui]);
+  }, [history, userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();

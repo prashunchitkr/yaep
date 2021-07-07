@@ -14,7 +14,7 @@ function LoginScreen({ location, history }) {
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.user);
   const { loading, error, userInfo } = userLogin;
 
   const queryParams = new URLSearchParams(location.search);
