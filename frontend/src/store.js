@@ -16,17 +16,18 @@ const reducer = combineReducers({
   user: userReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
-
-const userInfoFromStorage = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
+function getFromStorage(key, defaultVal = null) {
+  return localStorage.getItem(key)
+    ? JSON.parse(localStorage.getItem(key))
+    : defaultVal;
+}
 
 const initialState = {
-  cart: { cartItems: cartItemsFromStorage },
-  user: { userInfo: userInfoFromStorage },
+  cart: {
+    cartItems: getFromStorage("cartItems", []),
+    shippingAddress: getFromStorage("shippingAddress", {}),
+  },
+  user: { userInfo: getFromStorage("userInfo") },
 };
 
 const middleware = [thunk];
