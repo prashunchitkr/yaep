@@ -8,12 +8,14 @@ import {
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { userReducer } from "./reducers/userReducers";
+import { orderCreateReducer } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailReducer,
   cart: cartReducer,
   user: userReducer,
+  orderCreate: orderCreateReducer,
 });
 
 function getFromStorage(key, defaultVal = null) {

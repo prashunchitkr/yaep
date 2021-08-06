@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
-import CheckoutSteps from "../components/CheckoutSteps.jsx";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 import { saveShippingAddress } from "../actions/cartActions.js";
 
@@ -27,59 +27,60 @@ const ShippingScreen = ({ history }) => {
     <FormContainer>
       <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
-      <Form onSubmit={submitHandler}></Form>
-      <Form.Group controlId="address" classNeme="py-2">
-        <Form.Label>Address</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter address"
-          value={address}
-          required
-          onChange={(e) => setAddress(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId="address" className="py-2">
+          <Form.Label>Address</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter address"
+            value={address}
+            required
+            onChange={(e) => setAddress(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
-      <Form.Group controlId="city" className="py-2">
-        <Form.Label>City</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter city"
-          value={city}
-          required
-          onChange={(e) => setCity(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
+        <Form.Group controlId="city" className="py-2">
+          <Form.Label>City</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter city"
+            value={city}
+            required
+            onChange={(e) => setCity(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
-      <Form.Group controlId="postalcode" className="py-2">
-        <Form.Label>Postal Code</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter postal code"
-          value={postalCode}
-          required
-          onChange={(e) => setPosatalCode(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
+        <Form.Group controlId="postalcode" className="py-2">
+          <Form.Label>Postal Code</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter postal code"
+            value={postalCode}
+            required
+            onChange={(e) => setPosatalCode(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
-      <Form.Group controlId="country" className="py-2">
-        <Form.Label>Country</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter country"
-          value={country}
-          required
-          onChange={(e) => setCountry(e.target.value)}
-        ></Form.Control>
-      </Form.Group>
+        <Form.Group controlId="country" className="py-2">
+          <Form.Label>Country</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter country"
+            value={country}
+            required
+            onChange={(e) => setCountry(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
-      <Button
-        type="submit"
-        variant="primary"
-        className="my-3"
-        onClick={submitHandler}
-      >
-        Continue
-      </Button>
+        <Button
+          type="submit"
+          variant="primary"
+          className="my-3"
+          onClick={submitHandler}
+        >
+          Continue
+        </Button>
+      </Form>
     </FormContainer>
   );
 };
