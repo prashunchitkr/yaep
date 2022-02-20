@@ -10,7 +10,8 @@ import { cartReducer } from "./reducers/cartReducers";
 import { userReducer } from "./reducers/userReducers";
 import {
   orderCreateReducer,
-  ordereetailReducer,
+  orderDetailReducer,
+  orderPayReducer,
 } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
@@ -19,7 +20,8 @@ const reducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
   orderCreate: orderCreateReducer,
-  orderDetails: ordereetailReducer,
+  orderDetails: orderDetailReducer,
+  orderPay: orderPayReducer,
 });
 
 function getFromStorage(key, defaultVal = null) {
