@@ -21,13 +21,13 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.12",
-    "react-redux": "^7.2.4",
-    "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "mongoose": "^5.12.12"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
     "nodemon": "^2.0.7"
+  },
+  "node": {
+    "version": "16.13.2"
   }
 }
