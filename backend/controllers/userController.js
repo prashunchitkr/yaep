@@ -134,3 +134,46 @@ export const deleteUser = expressAsyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
+/*
+ * @desc    Get user by ID
+ * @route   GET /api/users/:id
+ * @access  Private/Admin
+ */
+export const getUSerById = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+
+  if (user) {
+    res.json(user.remove());
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+/*
+ * @desc    Update user
+ * @route   PUT /api/users/:id
+ * @access  Private/Admin
+ */
+export const updateUser = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    const { name, email, isAdmin } = req.body;
+    user.name = name || user.name;
+    user.email = email || user.email;
+    user.isAdmin = isAdmin || user.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
