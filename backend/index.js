@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 
@@ -14,9 +15,22 @@ await connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (_req, res) => {
-  res.send("Hello World");
-});
+const __dirname = path.resolve();
+console.log(__dirname);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(__dirname, "frontend/build/inex.html");
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send({
+      message: "Hello World",
+    });
+  });
+}
 
 app.use(express.json());
 
