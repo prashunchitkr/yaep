@@ -7,7 +7,11 @@ import {
   productListReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
-import { userReducer } from "./reducers/userReducers";
+import {
+  userDeleteReducer,
+  userListReducer,
+  userReducer,
+} from "./reducers/userReducers";
 import {
   orderCreateReducer,
   orderDetailReducer,
@@ -24,6 +28,8 @@ const reducer = combineReducers({
   orderDetails: orderDetailReducer,
   orderPay: orderPayReducer,
   orderMyList: orderListMyReducer,
+  userList: userListReducer,
+  userDelete: userDeleteReducer,
 });
 
 function getFromStorage(key, defaultVal = null) {
