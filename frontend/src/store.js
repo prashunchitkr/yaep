@@ -11,6 +11,7 @@ import {
   userDeleteReducer,
   userDetailReducer,
   userListReducer,
+  userUpdateReducer,
   userReducer,
 } from "./reducers/userReducers";
 import {
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDetail: userDetailReducer,
   userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
 });
 
 function getFromStorage(key, defaultVal = null) {
