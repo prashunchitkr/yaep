@@ -140,11 +140,11 @@ export const deleteUser = expressAsyncHandler(async (req, res) => {
  * @route   GET /api/users/:id
  * @access  Private/Admin
  */
-export const getUSerById = expressAsyncHandler(async (req, res) => {
+export const getUserById = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
 
   if (user) {
-    res.json(user.remove());
+    res.json(user);
   } else {
     res.status(404);
     throw new Error("User not found");
