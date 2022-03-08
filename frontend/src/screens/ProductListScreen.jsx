@@ -3,16 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button, Table, Row, Col } from "react-bootstrap";
 
-import { listProducts } from "../actions/productActions";
+import { listProducts, deleteProduct } from "../actions/productActions";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
+
   const { loading, error, products } = useSelector(
     (state) => state.productList
   );
+
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = useSelector((state) => state.productDelete);
+
   const { userInfo } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -21,15 +29,15 @@ const ProductListScreen = ({ history, match }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
-  const _deleteHandler = (id) => {
+  const _deleteHandler = (id, name) => {
     if (
       window.confirm(
-        `Are you sure you want to delete this user ${userInfo.name}?`
+        `Are you sure you want to delete this product ${name}?`
       )
     ) {
-      // TODO: Delete Products
+      dispatch(deleteProduct(id));
     }
   };
 
@@ -49,7 +57,8 @@ const ProductListScreen = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
-
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -84,7 +93,7 @@ const ProductListScreen = ({ history, match }) => {
                   <Button
                     variant="danger"
                     className="btn-sm"
-                    onClick={() => _deleteHandler(product._id)}
+                    onClick={() => _deleteHandler(product._id, product.name)}
                   >
                     <i className="fas fa-trash"></i>
                   </Button>
