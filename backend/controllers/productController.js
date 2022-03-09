@@ -81,7 +81,7 @@ export const updateProduct = expressAsyncHandler(async (req, res) => {
   if (product) {
     product.name = name;
     product.price = price;
-    proxuct.description = description;
+    product.description = description;
     product.image = image;
     product.brand = brand;
     product.category = category;
